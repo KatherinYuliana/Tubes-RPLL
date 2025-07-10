@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/pages/Member/*","./src/pages/Admin/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
