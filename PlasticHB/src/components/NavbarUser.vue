@@ -8,17 +8,17 @@
       <li><router-link to="/Search">Search</router-link></li>
       <li><router-link to="/About">About Us</router-link></li>
       <li><router-link to="/Contact">Contact Us</router-link></li>
-      <li>
+      <!-- <li>
         <router-link to="/login">
           <button>Login</button>
         </router-link>
-      </li>
+      </li> -->
       
-      <!-- <li><router-link to="/User">
+      <li><router-link to="/user">
           <div class="pp">
             <img src="../assets/contoh pp.jpeg" alt="">
           </div>
-        </router-link></li> -->
+        </router-link></li>
     </ul>
   </nav>
 </template>

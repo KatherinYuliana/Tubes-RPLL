@@ -6,15 +6,17 @@ import Search from '../pages/Member/Search.vue'
 import Contact from '../pages/Member/Contact.vue'
 import About from '../pages/Member/About.vue'
 import User from '../pages/Member/User.vue'
+import HomeUser from '../pages/Member/HomeUser.vue'
 
 const routes = [
-  { path: '/', component: Login},
+  { path: '/', component: Home},
+  { path: '/login', component: Login },
   { path: '/admin', component: Admin },
-  { path: '/home', component: Home },
   { path: '/search', component: Search },
   { path: '/contact', component: Contact },
   { path: '/about', component: About },
-  { path: '/user', component: User }
+  { path: '/user', component: User },
+  { path: '/homeuser', component: HomeUser },
 ]
 
 export default createRouter({
