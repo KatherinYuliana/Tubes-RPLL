@@ -11,17 +11,11 @@ router.post('/login', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password]);
 
-    console.log('Email input:', email);
-    // console.log('Username input:', username);
-console.log('Password input:', password);
-// console.log('User from DB:', user);
-
     if (result.rows.length === 0) {
       return res.status(401).json({ message: 'Email tidak ditemukan' });
     }
 
     const user = result.rows[0];
-    console.log('User from DB:', user);
 
     // Tidak pakai bcrypt
     if (user.password !== password) {
@@ -37,6 +31,7 @@ console.log('Password input:', password);
   }
 });
 
+// Get user profile
 router.get('/profile', async (req, res) => {
   const authHeader = req.headers.authorization;
 

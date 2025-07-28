@@ -7,6 +7,7 @@ import Contact from '../pages/Member/Contact.vue'
 import About from '../pages/Member/About.vue'
 import User from '../pages/Member/User.vue'
 import HomeUser from '../pages/Member/HomeUser.vue'
+import ProductDetail from '../components/ProductDetail.vue'
 
 const routes = [
   { path: '/', component: Home},
@@ -18,6 +19,7 @@ const routes = [
   { path: '/about', component: About },
   { path: '/user', component: User },
   { path: '/homeuser', component: HomeUser },
+  { path: '/products/detail/:id', component: ProductDetail }
 ]
 
 export default createRouter({

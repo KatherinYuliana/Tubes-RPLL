@@ -2,6 +2,7 @@
 import Navbar from "@/components/NavbarUser.vue"
 import HeroText from "../../components/HeroText.vue";
 import ProductGallery from "../../components/ProductGallery.vue";
+import Gallery from "../../components/Gallery.vue";
 function handleClick(){
   alert('Ayo Mulai Belanja!')
 }
@@ -19,4 +20,5 @@ function handleClick(){
   ctaTo="/search" />
   <ProductGallery />
 <h1>REKOMENDASI PRODUK UNTUK KAMU</h1>
+    <Gallery />
 </template>

@@ -2,7 +2,14 @@
 <template>
   <div class="p-4">
     <h2>Profil Pengguna</h2>
-    <img v-if="user && user.image_profile" :src="`../../assets/Profile Picture/${user.image_profile}`" alt="Profile" />
+    <img
+  v-if="user && user.image_profile"
+  :src="`/Profile Picture/${user.image_profile}`"
+  :alt="user.username || 'Profile'"
+  class="profile-img"
+/>
+    <!-- <img :src="`/Profile Picture/${user.image_profile}`" :alt="profile" /> -->
+    <!-- <img v-if="user && user.image_profile" :src="`../../assets/Profile Picture/${user.image_profile}`" alt="Profile" /> -->
 
     <!-- <img :src="`../../assets/Profile Picture/${user.image_profile}`" alt="Profile" /> -->
 
@@ -20,6 +27,10 @@
     
         <router-link to="/home">
           <button>Logout</button>
+        </router-link>
+
+        <router-link to="/">
+          <button>Edit Profile</button>
         </router-link>
   </div>
 </template>
