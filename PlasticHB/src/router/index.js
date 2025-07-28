@@ -10,6 +10,7 @@ import HomeUser from '../pages/Member/HomeUser.vue'
 
 const routes = [
   { path: '/', component: Home},
+  { path: '/home', component: Home},
   { path: '/login', component: Login },
   { path: '/admin', component: Admin },
   { path: '/search', component: Search },

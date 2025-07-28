@@ -2,14 +2,25 @@
 <template>
   <div class="p-4">
     <h2>Profil Pengguna</h2>
+    <img v-if="user && user.image_profile" :src="`../../assets/Profile Picture/${user.image_profile}`" alt="Profile" />
+
+    <!-- <img :src="`../../assets/Profile Picture/${user.image_profile}`" alt="Profile" /> -->
+
+    <!-- <img src="../../assets/Profile Picture/template.jpg" alt="" class="profile-img"> -->
+
     <div v-if="user">
-      <p><strong>ID:</strong> {{ user.id_user }}</p>
+      <!-- <p><strong>ID:</strong> {{ user.id_user }}</p> -->
       <p><strong>Nama:</strong> {{ user.username }}</p>
       <p><strong>Email:</strong> {{ user.email }}</p>
     </div>
     <div v-else>
       <p>Memuat data...</p>
     </div>
+
+    
+        <router-link to="/home">
+          <button>Logout</button>
+        </router-link>
   </div>
 </template>
 

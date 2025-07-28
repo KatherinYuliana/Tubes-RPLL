@@ -6,8 +6,8 @@
       <!-- <form @submit.prevent="handleLogin"> -->
         <input
           type="text"
-          v-model="username"
-          placeholder="Username atau Email"
+          v-model="email"
+          placeholder="Email"
           required
           class="field"
         />
@@ -33,7 +33,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
-const username = ref('')
+// const username = ref('')
 const email = ref('')
 const password = ref('')
 const error = ref('')
@@ -42,14 +42,19 @@ const router = useRouter()
 const login = async () => {
   try {
     const res = await axios.post('http://localhost:3000/api/users/login', {
-      username: username.value,
+      // username: username.value,
       email: email.value,
       password: password.value
     })
-    console.log(username.value, email.value, password.value)
+    console.log(email.value, password.value)
 
     localStorage.setItem('token', res.data.token)
-    router.push('/homeuser')
+    if (email.value === 'admin@gmail.com') {
+      router.push('/admin')
+    } else {
+      router.push('/homeuser')
+    }
+    // router.push('/homeuser')
   } catch (err) {
     error.value = err.response?.data?.message || 'Gagal login'
   }

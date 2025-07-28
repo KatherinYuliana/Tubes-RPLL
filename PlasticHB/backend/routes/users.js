@@ -6,13 +6,13 @@ const SECRET = 'rahasia123'; // Ganti dengan secret yang lebih aman
 
 // Login
 router.post('/login', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const result = await pool.query('SELECT * FROM users WHERE username = $1 OR email = $2 AND password = $3', [username, email, password]);
+    const result = await pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password]);
 
     console.log('Email input:', email);
-    console.log('Username input:', username);
+    // console.log('Username input:', username);
 console.log('Password input:', password);
 // console.log('User from DB:', user);
 
@@ -49,7 +49,7 @@ router.get('/profile', async (req, res) => {
   try {
     const decoded = jwt.verify(token, SECRET); // Pastikan SECRET sama seperti saat login
     const result = await pool.query(
-      'SELECT username, email FROM users WHERE id_user = $1',
+      'SELECT username, email, image_profile FROM users WHERE id_user = $1',
       [decoded.id_user]
     );
 

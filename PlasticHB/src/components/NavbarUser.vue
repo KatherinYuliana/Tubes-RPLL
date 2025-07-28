@@ -16,12 +16,49 @@
       
       <li><router-link to="/user">
           <div class="pp">
-            <img src="../assets/contoh pp.jpeg" alt="">
+            <!-- <img :src="`../assets/Profile Picture/template.jpg`" alt=""> -->
+<!-- <img v-if="user && user.image_profile" :src="`../assets/Profile Picture/${user.image_profile}`" alt="Profile" /> -->
+
+            <!-- <img :src="`../../assets/Profile Picture/${user.image_profile}`" alt="" /> -->
+            <!-- {{ console.log(user.image_profile) }} -->
+
+
+            <!-- <img :src="`../assets/${user.image_profile}`" alt=""> -->
+
+            <img src="../assets/Profile Picture/template.jpg" alt="">
           </div>
         </router-link></li>
     </ul>
   </nav>
 </template>
+
+<script setup>
+import { onMounted, ref } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
+
+const user = ref(null)
+const router = useRouter()
+
+onMounted(async () => {
+  const token = localStorage.getItem('token')
+  if (!token) return router.push('/')
+console.log('Token:', token)
+  try {
+    const res = await axios.get('http://localhost:3000/api/users/profile', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    user.value = res.data
+  } catch (err) {
+    // } catch (err) {
+  console.error('axios error', err.response?.data || err.message)
+  router.push('/')
+// }
+    // console.error(err)
+    // router.push('/')
+  }
+})
+</script>
 
 <style scope>
 .pp img {
