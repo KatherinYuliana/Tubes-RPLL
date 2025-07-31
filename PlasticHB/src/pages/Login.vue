@@ -2,12 +2,75 @@
 <template>
   <div class="login-container">
     <div class="login-card">
-      <h2 class="login-title">Login Sebagai</h2>
-      <router-link to="/admin" class="login-button admin-button">Admin</router-link>
-      <router-link to="/home" class="login-button member-button">Member</router-link>
+      <h2 class="login-title">Login</h2>
+      <!-- <form @submit.prevent="handleLogin"> -->
+        <input
+          type="text"
+          v-model="email"
+          placeholder="Email"
+          required
+          class="field"
+        />
+        <input
+          type="password"
+          v-model="password"
+          placeholder="Password"
+          required
+          class="field"
+        />
+        <button @click="login" class="login-button">Login</button>
+      <!-- </form> -->
+      <p style="text-align: center; margin-top: 1rem;">
+        Belum punya akun?
+        <router-link to="/register" style="color: #007bff; text-decoration: underline;">Daftar di sini</router-link>
+      </p>
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
+
+// const username = ref('')
+const email = ref('')
+const password = ref('')
+const error = ref('')
+const router = useRouter()
+
+const login = async () => {
+  try {
+    const res = await axios.post('http://localhost:3000/api/users/login', {
+      // username: username.value,
+      email: email.value,
+      password: password.value
+    })
+    console.log(email.value, password.value)
+
+    localStorage.setItem('token', res.data.token)
+    if (email.value === 'admin@gmail.com') {
+      router.push('/admin')
+    } else {
+      router.push('/homeuser')
+    }
+    // router.push('/homeuser')
+  } catch (err) {
+    error.value = err.response?.data?.message || 'Gagal login'
+  }
+}
+
+// function handleLogin() {
+//   // Dummy logic untuk login
+//   if (username.value && password.value) {
+//     // Lanjutkan ke halaman home sebagai contoh
+//     router.push('/home')
+//   } else {
+//     alert("Username dan Password harus diisi")
+//   }
+// }
+</script>
+
 <style scoped>
 .login-container {
   display: flex;
@@ -32,7 +95,16 @@ h2 {
   color: #333;
 }
 
-.admin-button {
+.field {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.login-button {
   width: 100%;
   padding: 0.75rem;
   margin-bottom: 1rem;
@@ -45,15 +117,4 @@ h2 {
   transition: background 0.2s;
 }
 
-.member-button {
-  width: 100%;
-  padding: 0.75rem;
-  background: #28a745;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
 </style>

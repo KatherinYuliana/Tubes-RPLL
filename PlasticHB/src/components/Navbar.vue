@@ -8,11 +8,17 @@
       <li><router-link to="/Search">Search</router-link></li>
       <li><router-link to="/About">About Us</router-link></li>
       <li><router-link to="/Contact">Contact Us</router-link></li>
-      <li><router-link to="/User">
+      <li>
+        <router-link to="/login">
+          <button>Login</button>
+        </router-link>
+      </li>
+      
+      <!-- <li><router-link to="/User">
           <div class="pp">
             <img src="../assets/contoh pp.jpeg" alt="">
           </div>
-        </router-link></li>
+        </router-link></li> -->
     </ul>
   </nav>
 </template>
@@ -21,5 +27,13 @@
 .pp img {
   border-radius: 40px;
   height: 25px;
+}
+button {
+  padding: 5px 10px;
+  background-color: #2151f0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 </style>
