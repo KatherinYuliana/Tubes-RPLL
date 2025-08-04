@@ -1,10 +1,11 @@
 <script setup>
 import Navbar from "@/components/NavbarAdmin.vue"
 import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
 
 const route = useRoute()
+const router = useRouter()
 const product = ref(null)
 
 onMounted(async () => {
@@ -21,6 +22,15 @@ product.value = res.data[0] // karena hasilnya array
     console.error("Gagal ambil detail produk:", e)
   }
 })
+
+function goToEdit(id_product) {
+  // router.push({
+  //   name: 'EditProduct', 
+  //   params: { id_product }
+  // })
+  router.push(`/form_edit/${id_product}`)
+  // router.push({ path: '/form_edit/', query: { id_product } })
+}
 </script>
 
 <template>
@@ -37,7 +47,8 @@ product.value = res.data[0] // karena hasilnya array
       <p>{{ product.description }}</p>
 
     </div>
-    <button @click="$router.push('/admin')">Edit Produk</button>
+    <button @click="goToEdit(product.id_product)">Edit Produk</button>
+    <!-- <button @click="$router.push('/form_edit')">Edit Produk</button> -->
   </div>
 </template>
 
