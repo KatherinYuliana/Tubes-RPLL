@@ -1,9 +1,7 @@
-<!-- src/pages/Login.vue -->
 <template>
   <div class="login-container">
     <div class="login-card">
       <h2 class="login-title">Login</h2>
-      <!-- <form @submit.prevent="handleLogin"> -->
         <input
           type="text"
           v-model="email"
@@ -19,7 +17,6 @@
           class="field"
         />
         <button @click="login" class="login-button">Login</button>
-      <!-- </form> -->
       <p style="text-align: center; margin-top: 1rem;">
         Belum punya akun?
         <router-link to="/register" style="color: #007bff; text-decoration: underline;">Daftar di sini</router-link>
@@ -33,7 +30,6 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
-// const username = ref('')
 const email = ref('')
 const password = ref('')
 const error = ref('')
@@ -42,7 +38,6 @@ const router = useRouter()
 const login = async () => {
   try {
     const res = await axios.post('http://localhost:3000/api/users/login', {
-      // username: username.value,
       email: email.value,
       password: password.value
     })
@@ -54,21 +49,10 @@ const login = async () => {
     } else {
       router.push('/homeuser')
     }
-    // router.push('/homeuser')
   } catch (err) {
     error.value = err.response?.data?.message || 'Gagal login'
   }
 }
-
-// function handleLogin() {
-//   // Dummy logic untuk login
-//   if (username.value && password.value) {
-//     // Lanjutkan ke halaman home sebagai contoh
-//     router.push('/home')
-//   } else {
-//     alert("Username dan Password harus diisi")
-//   }
-// }
 </script>
 
 <style scoped>

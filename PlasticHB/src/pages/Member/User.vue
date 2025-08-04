@@ -1,37 +1,27 @@
-<!-- src/views/Profile.vue -->
 <template>
   <div class="p-4">
     <h2>Profil Pengguna</h2>
     <img
-  v-if="user && user.image_profile"
-  :src="`/Profile Picture/${user.image_profile}`"
-  :alt="user.username || 'Profile'"
-  class="profile-img"
-/>
-    <!-- <img :src="`/Profile Picture/${user.image_profile}`" :alt="profile" /> -->
-    <!-- <img v-if="user && user.image_profile" :src="`../../assets/Profile Picture/${user.image_profile}`" alt="Profile" /> -->
-
-    <!-- <img :src="`../../assets/Profile Picture/${user.image_profile}`" alt="Profile" /> -->
-
-    <!-- <img src="../../assets/Profile Picture/template.jpg" alt="" class="profile-img"> -->
+      v-if="user && user.image_profile"
+      :src="`/Profile Picture/${user.image_profile}`"
+      :alt="user.username || 'Profile'"
+      class="profile-img"
+    />
 
     <div v-if="user">
-      <!-- <p><strong>ID:</strong> {{ user.id_user }}</p> -->
       <p><strong>Nama:</strong> {{ user.username }}</p>
       <p><strong>Email:</strong> {{ user.email }}</p>
     </div>
     <div v-else>
       <p>Memuat data...</p>
     </div>
+    <router-link to="/home">
+      <button>Logout</button>
+    </router-link>
 
-    
-        <router-link to="/home">
-          <button>Logout</button>
-        </router-link>
-
-        <router-link to="/">
-          <button>Edit Profile</button>
-        </router-link>
+    <router-link to="/">
+      <button>Edit Profile</button>
+    </router-link>
   </div>
 </template>
 
@@ -53,17 +43,11 @@ console.log('Token:', token)
     })
     user.value = res.data
   } catch (err) {
-    // } catch (err) {
   console.error('axios error', err.response?.data || err.message)
   router.push('/')
-// }
-    // console.error(err)
-    // router.push('/')
   }
 })
 </script>
-
-
 
 <style scoped>
 .user {

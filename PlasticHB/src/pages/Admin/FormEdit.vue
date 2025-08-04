@@ -63,7 +63,6 @@
       </div>
 
       <button type="submit">Simpan Perubahan</button>
-      <!-- <button @click="login" class="login-button">Login</button> -->
     </form>
   </div>
 </template>
@@ -191,103 +190,6 @@ export default {
   }
 };
 </script>
-
-<!-- <script>
-export default {
-  data() {
-    return {
-      form: {
-        id_product: '',
-        name_product: '',
-        description: '',
-        price: '',
-        id_category: '',
-        image_url: ''
-      },
-      selectedImageFile: null,
-      categories: []
-    };
-  },
-  mounted() {
-    const id_product = this.$route.query.id_product;
-    console.log('ID Product dari query:', id_product); // cek id_product
-    if (id_product) {
-      this.fetchProduct(id_product);
-    }
-    this.fetchCategories();
-  },
-  methods: {
-    async fetchProduct(id_product) {
-      try {
-        const res = await fetch(`http://localhost:3000/api/products/detail?id_product=${id_product}`);
-        const data = await res.json();
-        console.log('Data produk:', data);
-        const product = data[0]; // hasil dari SELECT ... WHERE p.id_product = $1
-        this.form = {
-          name_product: product.name_product,
-          description: product.description,
-          price: product.price,
-          id_category: product.id_category || '', // jika backend belum kirim, pastikan aman
-          image_url: product.image_url
-        };
-        console.log('Form setelah set:', this.form); 
-      } catch (err) {
-        console.error('Gagal mengambil data produk:', err);
-      }
-    },
-
-    async fetchCategories() {
-      try {
-        const res = await fetch('http://localhost:3000/api/products/categories');
-        const data = await res.json();
-        this.categories = data;
-      } catch (err) {
-        console.error('Gagal mengambil kategori:', err);
-      }
-    },
-
-    handleImageUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        this.selectedImageFile = file;
-        this.form.image_url = file.name;
-      }
-    },
-
-    async submitForm() {
-      const id_product = this.$route.query.id_product;
-      try {
-        // Upload gambar jika ada file baru
-        if (this.selectedImageFile) {
-          const formData = new FormData();
-          formData.append('image_url', this.selectedImageFile);
-          const uploadRes = await fetch('http://localhost:3000/api/products/upload', {
-            method: 'POST',
-            body: formData
-          });
-          if (!uploadRes.ok) throw new Error('Gagal upload gambar');
-        }
-
-        // Simpan perubahan
-        const res = await fetch(`http://localhost:3000/edit/${id_product}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(this.form)
-        });
-
-        if (!res.ok) throw new Error('Gagal menyimpan perubahan');
-
-        alert('Data produk berhasil diperbarui');
-      } catch (err) {
-        console.error(err);
-        alert('Terjadi kesalahan saat menyimpan perubahan.');
-      }
-    }
-  }
-};
-</script> -->
 
 <style scoped>
 .form-container {

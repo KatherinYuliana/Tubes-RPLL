@@ -1,6 +1,5 @@
 <script setup>
 import Navbar from "@/components/NavbarAdmin.vue"
-
 </script>
 
 <template>
@@ -51,7 +50,6 @@ import Navbar from "@/components/NavbarAdmin.vue"
 </template>
 
 <script>
-// import Navbar from "@/components/NavbarAdmin.vue"
 export default {
   data() {
     return {

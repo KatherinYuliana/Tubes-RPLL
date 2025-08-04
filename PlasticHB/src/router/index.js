@@ -28,7 +28,6 @@ const routes = [
   { path: '/products/detail/:id', component: ProductDetail },
   { path: '/form_add', component: FormAdd },
   { path: '/form_edit/:id_product', name: 'EditProduct', component: FormEdit, props: true },
-  // { path: '/products/edit/:id_product', component: FormEdit },
 ]
 
 export default createRouter({

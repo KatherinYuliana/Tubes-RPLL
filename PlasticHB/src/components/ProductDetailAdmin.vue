@@ -11,25 +11,17 @@ const product = ref(null)
 onMounted(async () => {
   const id = route.params.id
   try {
-    // const res = await axios.get(`/api/products/${id}`)
     const res = await axios.get(`http://localhost:3000/api/products/detail`, {
     params: { id_product: id }
   })
-product.value = res.data[0] // karena hasilnya array
-    // const res = await axios.get(`http://localhost:3000/api/products/detail/${id}`)
-    // product.value = res.data
+  product.value = res.data[0] // karena hasilnya array
   } catch (e) {
     console.error("Gagal ambil detail produk:", e)
   }
 })
 
 function goToEdit(id_product) {
-  // router.push({
-  //   name: 'EditProduct', 
-  //   params: { id_product }
-  // })
   router.push(`/form_edit/${id_product}`)
-  // router.push({ path: '/form_edit/', query: { id_product } })
 }
 </script>
 
@@ -48,7 +40,6 @@ function goToEdit(id_product) {
 
     </div>
     <button @click="goToEdit(product.id_product)">Edit Produk</button>
-    <!-- <button @click="$router.push('/form_edit')">Edit Produk</button> -->
   </div>
 </template>
 
