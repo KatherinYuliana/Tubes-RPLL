@@ -1,70 +1,76 @@
+<script setup>
+import Navbar from "@/components/NavbarAdmin.vue"
+</script>
 <template>
-  <div class="form-container">
+    <header>
+        <Navbar />
+    </header>
+    <div class="form-container">
     <h2>Edit Produk</h2>
     <form @submit.prevent="submitForm">
-      <div class="form-group">
-        <label for="name_product">Nama Produk:</label>
-        <input 
-          type="text" 
-          id="name_product" 
-          v-model="form.name_product" 
-          required
-        />
-      </div>
+        <div class="form-group">
+            <label for="name_product">Nama Produk:</label>
+            <input 
+                type="text" 
+                id="name_product" 
+                v-model="form.name_product" 
+                required
+            />
+        </div>
 
-      <div class="form-group">
-        <label for="description">Deskripsi:</label>
-        <textarea 
-          id="description" 
-          v-model="form.description" 
-          required
-        ></textarea>
-      </div>
+        <div class="form-group">
+            <label for="description">Deskripsi:</label>
+            <textarea 
+                id="description" 
+                v-model="form.description" 
+                required
+            ></textarea>
+        </div>
 
-      <div class="form-group">
-        <label for="price">Harga:</label>
-        <input 
-          type="number" 
-          id="price" 
-          v-model="form.price" 
-          required
-          min="0"
-          step="0.01"
-        />
-      </div>
+        <div class="form-group">
+            <label for="price">Harga:</label>
+            <input 
+                type="number" 
+                id="price" 
+                v-model="form.price" 
+                required
+                min="0"
+                step="0.01"
+            />
+        </div>
 
-      <div class="form-group">
-        <label for="id_category">Kategori:</label>
-        <select 
-          id="id_category" 
-          v-model="form.id_category" 
-          required
-        >
-          <option disabled value="">Pilih Kategori</option>
-          <option v-for="cat in categories" :key="cat.id_category" :value="cat.id_category">
-            {{ cat.name_category }}
-          </option>
-        </select>
-      </div>
+        <div class="form-group">
+            <label for="id_category">Kategori:</label>
+            <select 
+                id="id_category" 
+                v-model="form.id_category" 
+                required
+            >
+            <option disabled value="">Pilih Kategori</option>
+            <option v-for="cat in categories" :key="cat.id_category" :value="cat.id_category">
+                {{ cat.name_category }}
+            </option>
+            </select>
+        </div>
 
-      <div class="form-group">
-        <label>Gambar Saat Ini:</label>
-        <img v-if="form.image_url" :src="`/Foto Produk/${form.image_url}`" alt="Produk" width="100" />
-      </div>
+        <div class="form-group">
+            <label>Gambar Saat Ini:</label>
+            <img v-if="form.image_url" :src="`/Foto Produk/${form.image_url}`" alt="Produk" width="100" />
+        </div>
 
-      <div class="form-group">
-        <label for="new_image">Upload Gambar Baru:</label>
-        <input 
-          type="file" 
-          id="new_image" 
-          @change="handleImageUpload" 
-          accept="image/*"
-        />
-      </div>
+        <div class="form-group">
+            <label for="new_image">Upload Gambar Baru:</label>
+            <input 
+                type="file" 
+                id="new_image" 
+                @change="handleImageUpload" 
+                accept="image/*"
+            />
+        </div>
 
-      <button type="submit">Simpan Perubahan</button>
+        <button type="submit">Simpan Perubahan</button>
     </form>
-  </div>
+    </div>
 </template>
 
 <script>
