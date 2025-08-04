@@ -1,5 +1,5 @@
 <script setup>
-import Navbar from "@/components/NavbarUser.vue"
+import Navbar from "@/components/NavbarAdmin.vue"
 import HeroText from "../../components/HeroText.vue";
 import ProductGallery from "../../components/ProductGallery.vue";
 import Gallery from "../../components/Gallery.vue";

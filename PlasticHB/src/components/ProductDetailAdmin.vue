@@ -32,15 +32,16 @@ product.value = res.data[0] // karena hasilnya array
     <img :src="`/Foto Produk/${product.image_url}`" alt="Product Image" />
     <div class="info">
       <h1>{{ product.name_product }}</h1>
+      <p>Kategori: {{ product.name_category }}</p>
+      <p>Harga: Rp {{ product.price.toLocaleString() }}</p>
       <p>{{ product.description }}</p>
 
     </div>
+    <button @click="$router.push('/admin')">Edit Produk</button>
   </div>
 </template>
 
 <style scoped>
-<<<<<<< HEAD
-=======
 .detail {
   display: flex;
   align-items: flex-start;
@@ -69,5 +70,4 @@ product.value = res.data[0] // karena hasilnya array
   font-size: 1.1em;
   color: #444;
 }
->>>>>>> 5fde1ba1b150c41c6bab6392bd10d48f9154686f
 </style>

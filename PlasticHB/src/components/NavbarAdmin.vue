@@ -33,7 +33,7 @@ console.log('Token:', token)
         <img src="../assets/Logo Toko/Logo.png" alt="Logo" />
       </li>
       <li><router-link to="/admin">Home</router-link></li>
-      <li><router-link to="/Search">Search</router-link></li>
+      <li><router-link to="/search_admin">Search</router-link></li>
       <li><router-link to="/About">About Us</router-link></li>
       <li><router-link to="/Contact">Contact Us</router-link></li>
       <!-- <li>
