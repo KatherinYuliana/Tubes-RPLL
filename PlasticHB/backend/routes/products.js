@@ -20,48 +20,86 @@ router.post('/upload', upload.single('image_url'), (req, res) => {
 
 // POST products (tambah produk)
 router.post('/add', async (req, res) => {
-  const { id_category, name_product, description, price, image_url} = req.body;
-  await pool.query('INSERT INTO products (id_category, name_product, description, price, image_url) VALUES ($1, $2, $3, $4, $5)', 
+  const { id_category, name_product, description, price, image_url } = req.body;
+  await pool.query('INSERT INTO products (id_category, name_product, description, price, image_url) VALUES ($1, $2, $3, $4, $5)',
     [id_category, name_product, description, price, image_url]);
   res.json({ message: 'Product added' });
 });
 
 // GET products (menampilkan detail produk)
+// router.get('/detail', async (req, res) => {
+//   try {
+//     const { id_product } = req.query
+
+//     if (!id_product) {
+//       return res.status(400).json({
+//         error: 'id_product parameter is required'
+//       })
+//     }
+
+//     const result = await pool.query(
+//       `SELECT p.*, c.name_category 
+// FROM products p 
+// LEFT JOIN categories c 
+// ON p.id_category = c.id_category WHERE p.id_product = 1`,
+//       [id_product]
+//     )
+
+//     if (result.rows.length === 0) {
+//       return res.status(404).json({
+//         error: 'Product not found'
+//       })
+//     }
+
+//     res.json(result.rows)
+//   } catch (err) {
+//     console.error(err)
+//     res.status(500).json({
+//       error: 'Server error'
+//     })
+//   }
+// })
+// In your products.js backend route
 router.get('/detail', async (req, res) => {
+  const { id_product } = req.query;
+  
+  if (!id_product) {
+    return res.status(400).json({ error: 'Product ID is required' });
+  }
+
   try {
-    const { id_product } = req.query
+    console.log('Fetching product with ID:', id_product);
     
-    if (!id_product) {
-      return res.status(400).json({ 
-        error: 'id_product parameter is required' 
-      })
-    }
+    const query = `
+      SELECT p.*, c.name_category 
+      FROM products p 
+      LEFT JOIN categories c ON p.id_category = c.id_category 
+      WHERE p.id_product = $1
+    `;
     
-    const result = await pool.query(
-      'SELECT * FROM products WHERE id_product = $1',
-      [id_product]
-    )
+    const result = await pool.query(query, [id_product]);
+    
+    console.log('Query result:', result.rows);
     
     if (result.rows.length === 0) {
-      return res.status(404).json({ 
-        error: 'Product not found' 
-      })
+      return res.status(404).json({ error: 'Product not found' });
     }
     
-    res.json(result.rows)
+    res.json(result.rows);
   } catch (err) {
-    console.error(err)
+    console.error('Database error:', err);
     res.status(500).json({ 
-      error: 'Server error' 
-    })
+      error: 'Internal server error',
+      details: err.message // Include error details
+    });
   }
-})
+});
 
 // GET products random
 router.get('/random', async (req, res) => {
   try {
     const result = await pool.query(
-      'SELECT id_product, name_product, image_url FROM products ORDER BY RANDOM() LIMIT 2' // 5 random items
+      'SELECT id_product, name_product, image_url FROM products ORDER BY RANDOM() LIMIT 5' // 5 random items
     )
     res.json(result.rows)
   } catch (err) {
@@ -93,6 +131,53 @@ router.put('/edit', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Search endpoint
+router.post('/search', async (req, res) => {
+  try {
+    const { query, type } = req.body;
+    
+    let sql;
+    let params;
+    
+    if (type === 'name') {
+      sql = `
+        SELECT 
+          p.id_product,
+          p.name_product, 
+          p.image_url
+        FROM 
+          products p
+        WHERE 
+          p.name_product ILIKE '%' || $1 || '%';
+      `;
+      params = [`%${query}%`];
+    } else if (type === 'category') {
+      sql = `
+        SELECT 
+          p.id_product,
+          p.name_product, 
+          p.image_url
+        FROM 
+          products p
+        JOIN 
+          categories c ON p.id_category = c.id_category
+        WHERE 
+          c.name_category ILIKE '%' || $1 || '%';
+      `;
+      params = [`%${query}%`];
+    } else {
+      return res.status(400).json({ error: 'Invalid search type' });
+    }
+    
+    const result = await pool.query(sql, params);
+    res.json(result.rows);
+    
+  } catch (error) {
+    console.error('Search error:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
