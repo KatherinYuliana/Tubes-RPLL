@@ -6,18 +6,8 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const products = ref([])
 
-// onMounted(async () => {
-//   try {
-//     const res = await axios.get('/api/products/random')
-//     products.value = res.data
-//   } catch (e) {
-//     console.error("Gagal ambil produk:", e)
-//   }
-// })
-
 onMounted(async () => {
   try {
-    // const res = await axios.get('/api/products/random')
     const res = await axios.get('http://localhost:3000/api/products/random')
     console.log('Data produk:', res.data) // cek di console
     products.value = res.data
@@ -40,8 +30,6 @@ function goToDetail(id_product) {
     @click="goToDetail(product.id_product)"
     style="cursor: pointer"
     >
-        <!-- <img src="../assets/Foto Produk/botol minum.jpg" alt="Product Image" /> -->
-        <!-- <img src="../assets/Foto Produk/ember.jpeg" alt="Product Image" /> -->
       <img :src="`/Foto Produk/${product.image_url}`" :alt="product.name_product" />
       <p>{{ product.name_product }}</p>
     </div>

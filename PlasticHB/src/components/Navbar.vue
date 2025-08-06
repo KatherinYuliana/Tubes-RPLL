@@ -13,12 +13,6 @@
           <button>Login</button>
         </router-link>
       </li>
-      
-      <!-- <li><router-link to="/User">
-          <div class="pp">
-            <img src="../assets/contoh pp.jpeg" alt="">
-          </div>
-        </router-link></li> -->
     </ul>
   </nav>
 </template>

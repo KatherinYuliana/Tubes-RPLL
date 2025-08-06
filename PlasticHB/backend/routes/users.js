@@ -61,35 +61,6 @@ router.get('/profile', async (req, res) => {
 
 
 // POST user
-// router.post('/register', async (req, res) => {
-//   // const { username, email, password, image_profile } = req.body;
-//   // await pool.query('INSERT INTO users (username, email, password, image_profile) VALUES ($1, $2, $3, $4)', [username, email, password, image_profile]);
-//   // res.json({ message: 'User added' });
-
-//   const { username, email, password, image_profile } = req.body;
-
-//   try {
-//     const result = await pool.query('INSERT INTO users (username, email, password, image_profile) VALUES ($1, $2, $3, $4)', [username, email, password, image_profile]);
-
-//     if (result.rows.length === 0) {
-//       return res.status(401).json({ message: 'Email tidak ditemukan' });
-//     }
-
-//     const user = result.rows[0];
-
-//     // Tidak pakai bcrypt
-//     if (user.password !== password) {
-//       return res.status(401).json({ message: 'Password salah' });
-//     }
-
-//     const token = jwt.sign({ id_user: user.id_user }, SECRET, { expiresIn: '1h' });
-
-//     res.json({ token });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: 'Server error' });
-//   }
-// });
 router.post('/register', async (req, res) => {
   const { username, email, password, image_profile } = req.body;
 

@@ -33,35 +33,20 @@ console.log('Token:', token)
         <img src="../assets/Logo Toko/Logo.png" alt="Logo" />
       </li>
       <li><router-link to="/admin">Home</router-link></li>
-      <li><router-link to="/Search">Search</router-link></li>
+      <li><router-link to="/search_admin">Search</router-link></li>
       <li><router-link to="/About">About Us</router-link></li>
       <li><router-link to="/Contact">Contact Us</router-link></li>
-      <!-- <li>
-        <router-link to="/login">
-          <button>Login</button>
-        </router-link>
-      </li> -->
-      
-      <li><router-link to="/user">
+      <li>
+        <router-link to="/user">
           <div class="pp">
-            <!-- <img :src="`../assets/Profile Picture/template.jpg`" alt=""> -->
-<!-- <img v-if="user && user.image_profile" :src="`../assets/Profile Picture/${user.image_profile}`" alt="Profile" /> -->
-
-            <!-- <img :src="`../../assets/Profile Picture/${user.image_profile}`" alt="" /> -->
-            <!-- {{ console.log(user.image_profile) }} -->
-
-
-            <!-- <img :src="`../assets/${user.image_profile}`" alt=""> -->
-
-            <!-- <img src="../assets/Profile Picture/template.jpg" alt=""> -->
-             <img
-  v-if="user && user.image_profile"
-  :src="`/Profile Picture/${user.image_profile}`"
-  :alt="user.username || 'Profile'"
-/>
-            <!-- <img :src="`/Profile Picture/${user.image_profile}`" :alt="user.username" /> -->
+            <img 
+              v-if="user && user.image_profile"
+              :src="`/Profile Picture/${user.image_profile}`"
+              :alt="user.username || 'Profile'"
+            />
           </div>
-        </router-link></li>
+        </router-link>
+      </li>
     </ul>
   </nav>
 </template>

@@ -1,26 +1,28 @@
 <script setup>
 import Navbar from "@/components/NavbarAdmin.vue"
 import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
 
 const route = useRoute()
+const router = useRouter()
 const product = ref(null)
 
 onMounted(async () => {
   const id = route.params.id
   try {
-    // const res = await axios.get(`/api/products/${id}`)
     const res = await axios.get(`http://localhost:3000/api/products/detail`, {
     params: { id_product: id }
   })
-product.value = res.data[0] // karena hasilnya array
-    // const res = await axios.get(`http://localhost:3000/api/products/detail/${id}`)
-    // product.value = res.data
+  product.value = res.data[0] // karena hasilnya array
   } catch (e) {
     console.error("Gagal ambil detail produk:", e)
   }
 })
+
+function goToEdit(id_product) {
+  router.push(`/form_edit/${id_product}`)
+}
 </script>
 
 <template>
@@ -32,9 +34,12 @@ product.value = res.data[0] // karena hasilnya array
     <img :src="`/Foto Produk/${product.image_url}`" alt="Product Image" />
     <div class="info">
       <h1>{{ product.name_product }}</h1>
+      <p>Kategori: {{ product.name_category }}</p>
+      <p>Harga: Rp {{ product.price.toLocaleString() }}</p>
       <p>{{ product.description }}</p>
 
     </div>
+    <button @click="goToEdit(product.id_product)">Edit Produk</button>
   </div>
 </template>
 

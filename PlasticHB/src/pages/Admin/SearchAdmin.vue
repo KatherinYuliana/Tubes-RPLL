@@ -1,5 +1,5 @@
 <script setup>
-import Navbar from "@/components/Navbar.vue"
+import Navbar from "@/components/NavbarAdmin.vue"
 import ProductDetail from "../../components/ProductDetailAdmin.vue";
 </script>
 
@@ -15,9 +15,10 @@ import ProductDetail from "../../components/ProductDetailAdmin.vue";
         <button type="submit" aria-label="Cari">
           <p>cari</p>
         </button>
-      </div>
-    </form>
-  </div>
+    </div>
+</form>
+<button @click="$router.push('/form_add')">Tambah Produk</button>
+</div>
 </template>
 
 <script>
