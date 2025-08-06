@@ -39,8 +39,6 @@ product.value = res.data[0] // karena hasilnya array
 </template>
 
 <style scoped>
-<<<<<<< HEAD
-=======
 .detail {
   display: flex;
   align-items: flex-start;
@@ -69,5 +67,4 @@ product.value = res.data[0] // karena hasilnya array
   font-size: 1.1em;
   color: #444;
 }
->>>>>>> 5fde1ba1b150c41c6bab6392bd10d48f9154686f
 </style>
