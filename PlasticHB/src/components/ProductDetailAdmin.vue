@@ -7,18 +7,36 @@ import axios from 'axios'
 const route = useRoute()
 const router = useRouter()
 const product = ref(null)
+const error = ref(null)
+const isLoading = ref(false)
+
 
 onMounted(async () => {
-  const id = route.params.id
+  const id_product = route.params.id_product || route.params.id // fallback for older routes
+  if (!id_product) {
+    error.value = "Product ID not found in URL";
+    return;
+  }
+  isLoading.value = true;
   try {
     const res = await axios.get(`http://localhost:3000/api/products/detail`, {
-    params: { id_product: id }
-  })
-  product.value = res.data[0] // karena hasilnya array
+      params: { id_product }
+    });
+    
+    if (res.data?.length > 0) {
+      product.value = res.data[0];
+    } else {
+      error.value = "Product not found";
+    }
   } catch (e) {
-    console.error("Gagal ambil detail produk:", e)
+    console.error("API Error:", e.response?.data || e.message);
+    error.value = e.response?.data?.error || 
+                 e.response?.data?.message || 
+                 "Failed to load product details";
+  } finally {
+    isLoading.value = false;
   }
-})
+});
 
 function goToEdit(id_product) {
   router.push(`/form_edit/${id_product}`)
@@ -29,7 +47,14 @@ function goToEdit(id_product) {
   <header>
     <Navbar />
   </header>
+<div v-if="isLoading" class="loading">Loading...</div>
+  
+  <div v-if="error" class="error">
+    Error: {{ error }}
+    <button @click="$router.back()">Go Back</button>
+  </div>
 
+  <!-- <div v-if="product" class="detail"> -->
   <div v-if="product" class="detail">
     <img :src="`/Foto Produk/${product.image_url}`" alt="Product Image" />
     <div class="info">
@@ -71,5 +96,14 @@ function goToEdit(id_product) {
 .info p {
   font-size: 1.1em;
   color: #444;
+}
+.error {
+  color: red;
+  padding: 20px;
+  text-align: center;
+}
+.loading {
+  padding: 20px;
+  text-align: center;
 }
 </style>

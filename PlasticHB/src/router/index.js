@@ -25,7 +25,7 @@ const routes = [
   { path: '/about', component: About },
   { path: '/user', component: User },
   { path: '/homeuser', component: HomeUser },
-  { path: '/products/detail/:id', component: ProductDetail },
+  { path: '/products/detail/:id_product', name: 'ProductDetail', component: ProductDetail, props: true },
   { path: '/form_add', component: FormAdd },
   { path: '/form_edit/:id_product', name: 'EditProduct', component: FormEdit, props: true },
 ]
