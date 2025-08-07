@@ -9,6 +9,7 @@ const router = useRouter()
 const product = ref(null)
 const error = ref(null)
 const isLoading = ref(false)
+const isDeleting = ref(false)
 
 
 onMounted(async () => {
@@ -38,6 +39,30 @@ onMounted(async () => {
   }
 });
 
+async function deleteProduct(id_product) {
+  if (!confirm('Apakah Anda yakin ingin menghapus produk ini?')) {
+    return;
+  }
+
+  isDeleting.value = true;
+  try {
+    const response = await axios.delete(
+      `http://localhost:3000/api/products/${id_product}`
+    );
+    
+    if (response.data.message) {
+      alert('Produk berhasil dihapus');
+      router.push('/home_admin'); // Redirect ke halaman produk setelah delete
+    }
+  } catch (e) {
+    console.error("Delete error:", e.response?.data || e.message);
+    error.value = e.response?.data?.error || 
+                 "Gagal menghapus produk";
+  } finally {
+    isDeleting.value = false;
+  }
+}
+
 function goToEdit(id_product) {
   router.push(`/form_edit/${id_product}`)
 }
@@ -64,7 +89,17 @@ function goToEdit(id_product) {
       <p>{{ product.description }}</p>
 
     </div>
-    <button @click="goToEdit(product.id_product)">Edit Produk</button>
+    <!-- <button @click="goToEdit(product.id_product)">Edit Produk</button> -->
+    <div class="action-buttons">
+      <button @click="goToEdit(product.id_product)">Edit Produk</button>
+      <button 
+        @click="deleteProduct(product.id_product)" 
+        :disabled="isDeleting"
+        class="delete-btn"
+      >
+        {{ isDeleting ? 'Menghapus...' : 'Hapus Produk' }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -105,5 +140,24 @@ function goToEdit(id_product) {
 .loading {
   padding: 20px;
   text-align: center;
+}
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.delete-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
 </style>

@@ -181,6 +181,58 @@ router.post('/search', async (req, res) => {
   }
 });
 
+const fs = require('fs');
+// const path = require('path');
+
+router.delete('/:id_product', async (req, res) => {
+  const { id_product } = req.params;
+
+  if (!id_product) {
+    return res.status(400).json({ error: 'Product ID is required' });
+  }
+
+  try {
+    // 1. Dapatkan informasi produk termasuk nama file gambar
+    const productResult = await pool.query(
+      'SELECT image_url FROM products WHERE id_product = $1',
+      [id_product]
+    );
+
+    if (productResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    const imageUrl = productResult.rows[0].image_url;
+
+    // 2. Hapus produk dari database
+    await pool.query(
+      'DELETE FROM products WHERE id_product = $1',
+      [id_product]
+    );
+
+    // 3. Hapus file gambar jika ada
+    if (imageUrl) {
+      const imagePath = path.join(__dirname, '../../public/Foto Produk', imageUrl);
+      
+      if (fs.existsSync(imagePath)) {
+        fs.unlinkSync(imagePath);
+        console.log(`Deleted image file: ${imagePath}`);
+      } else {
+        console.log(`Image file not found: ${imagePath}`);
+      }
+    }
+
+    res.json({ 
+      message: 'Product and associated image deleted successfully' 
+    });
+  } catch (err) {
+    console.error('Delete error:', err);
+    res.status(500).json({ 
+      error: 'Internal server error',
+      details: err.message
+    });
+  }
+});
 // DELETE product
 // router.delete('/:id', async (req, res) => {
 //   const { id } = req.params;
