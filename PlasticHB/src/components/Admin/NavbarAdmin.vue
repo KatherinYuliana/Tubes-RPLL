@@ -30,12 +30,12 @@ console.log('Token:', token)
   <nav>
     <ul>
       <li class="logo">
-        <img src="../assets/Logo Toko/Logo.png" alt="Logo" />
+        <img src="../../assets/Logo Toko/Logo.png" alt="Logo" />
       </li>
-      <li><router-link to="/admin">Home</router-link></li>
+      <li><router-link to="/home_admin">Home</router-link></li>
       <li><router-link to="/search_admin">Search</router-link></li>
-      <li><router-link to="/About">About Us</router-link></li>
-      <li><router-link to="/Contact">Contact Us</router-link></li>
+      <li><router-link to="/about_admin">About Us</router-link></li>
+      <li><router-link to="/contact_admin">Contact Us</router-link></li>
       <li>
         <router-link to="/user">
           <div class="pp">

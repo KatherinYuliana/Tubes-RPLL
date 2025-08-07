@@ -1,6 +1,6 @@
 <script setup>
-import Navbar from "@/components/Navbar.vue"
-import ProductDetail from "../../components/ProductDetailAdmin.vue";
+import Navbar from "../../components/Member/NavbarMember.vue"
+import ProductDetail from "../../components/Admin/ProductDetailAdmin.vue";
 </script>
 
 <template>

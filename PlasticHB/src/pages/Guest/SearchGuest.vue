@@ -108,7 +108,7 @@ button[type="submit"]:hover {
 </style> -->
 
 <script setup>
-import Navbar from "../../components/Admin/NavbarAdmin.vue"
+import Navbar from "../../components/Guest/NavbarGuest.vue"
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router'

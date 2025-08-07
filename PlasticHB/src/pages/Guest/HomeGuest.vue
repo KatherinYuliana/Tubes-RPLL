@@ -1,7 +1,9 @@
 <script setup>
-import Navbar from "@/components/NavbarUser.vue"
+import Navbar from "../../components/Guest/NavbarGuest.vue"
 import HeroText from "../../components/HeroText.vue";
 import ProductGallery from "../../components/ProductGallery.vue";
+// import ProductGallery from "../../components/ProductGallery.vue";
+import Gallery from "../../components/Gallery.vue";
 function handleClick(){
   alert('Ayo Mulai Belanja!')
 }
@@ -16,7 +18,8 @@ function handleClick(){
   title="Selamat Datang di Toko Plastic HB"
   subtitle="Solusi Plastik Berkualitas"
   cta-text="Belanja Sekarang"
-  ctaTo="/search" />
+  ctaTo="/search_guest" />
   <ProductGallery />
 <h1>REKOMENDASI PRODUK UNTUK KAMU</h1>
+  <Gallery />
 </template>
