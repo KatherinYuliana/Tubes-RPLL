@@ -9,6 +9,7 @@ import SearchMember from '../pages/Member/SearchMember.vue'
 import SearchAdmin from '../pages/Admin/SearchAdmin.vue'
 import ContactGuest from '../pages/Guest/ContactGuest.vue'
 import ContactMember from '../pages/Member/ContactMember.vue'
+import ContactAdmin from '../pages/Admin/ContactAdmin.vue'
 import AboutGuest from '../pages/Guest/AboutUsGuest.vue'
 import AboutMember from '../pages/Member/AboutUsMember.vue'
 import AboutAdmin from '../pages/Admin/AboutUsAdmin.vue' // Assuming AboutAdmin is the same as AboutMember
@@ -31,6 +32,7 @@ const routes = [
   { path: '/search_admin', component: SearchAdmin },
   { path: '/contact_guest', component: ContactGuest },
   { path: '/contact_member', component: ContactMember },
+  { path: '/contact_admin', component: ContactAdmin },
   { path: '/about_guest', component: AboutGuest },
   { path: '/about_member', component: AboutMember },
   { path: '/about_admin', component: AboutAdmin }, // Assuming AboutAdmin is the same as AboutMember
