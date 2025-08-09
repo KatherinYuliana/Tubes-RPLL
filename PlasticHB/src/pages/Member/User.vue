@@ -15,7 +15,7 @@
     <div v-else>
       <p>Memuat data...</p>
     </div>
-    <router-link to="/home">
+    <router-link to="/home_guest">
       <button>Logout</button>
     </router-link>
 
