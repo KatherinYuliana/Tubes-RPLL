@@ -146,7 +146,7 @@ const handleSearch = async () => {
 };
 
 function goToDetail(id_product) {
-  router.push(`/products/detail/${id_product}`)
+  router.push(`/products/detail_admin/${id_product}`)
 }
 
 // const navigateToProductDetail = (productId) => {

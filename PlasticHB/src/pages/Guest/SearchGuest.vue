@@ -182,7 +182,7 @@ function goToDetail(id_product) {
       </div>
     </form>
     
-    <button @click="$router.push('/form_add')" class="add-product-btn">Tambah Produk</button>
+    <!-- <button @click="$router.push('/form_add')" class="add-product-btn">Tambah Produk</button> -->
     
     <div v-if="error" class="error-message">
       {{ error }}

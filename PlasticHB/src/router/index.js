@@ -13,8 +13,9 @@ import AboutGuest from '../pages/Guest/AboutUsGuest.vue'
 import AboutMember from '../pages/Member/AboutUsMember.vue'
 import AboutAdmin from '../pages/Admin/AboutUsAdmin.vue' // Assuming AboutAdmin is the same as AboutMember
 import User from '../pages/Member/User.vue'
+import ProductDetail from '../components/Guest/ProductDetailGuest.vue' 
+import ProductDetailMember from '../components/Member/ProductDetailMember.vue'
 import ProductDetailAdmin from '../components/Admin/ProductDetailAdmin.vue'
-import ProductDetail from '../components/Guest/ProductDetailGuest.vue' // Adjusted import for guest product detail
 import FormAdd from '../pages/Admin/FormAdd.vue'
 import FormEdit from '../pages/Admin/FormEdit.vue'
 
@@ -36,6 +37,7 @@ const routes = [
   { path: '/user', component: User },
   // { path: '/homeuser', component: HomeUser },
   { path: '/products/detail/:id_product', name: 'ProductDetail', component: ProductDetail, props: true },
+  { path: '/products/detail_member/:id_product', name: 'ProductDetailMember', component: ProductDetailMember, props: true },
   { path: '/products/detail_admin/:id_product', name: 'ProductDetailAdmin', component: ProductDetailAdmin, props: true },
   { path: '/form_add', component: FormAdd },  
   { path: '/form_edit/:id_product', name: 'EditProduct', component: FormEdit, props: true },

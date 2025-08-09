@@ -2,7 +2,7 @@
 import Navbar from "../../components/Admin/NavbarAdmin.vue"
 import HeroText from "../../components/HeroText.vue";
 import ProductGallery from "../../components/ProductGallery.vue";
-import Gallery from "../../components/Gallery.vue";
+// import Gallery from "../../components/Guest/Gallery.vue";
 import GalleryAdmin from "../../components/Admin/GalleryAdmin.vue";
 function handleClick(){
   alert('Ayo Mulai Belanja!')
