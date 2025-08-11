@@ -11,7 +11,7 @@ function handleClick(){
   <header>
     <Navbar />
   </header>
-  
+
   <HeroText
   title="Selamat Datang di Toko Plastic HB"
   subtitle="Solusi Plastik Berkualitas"

@@ -32,14 +32,12 @@ console.log('Token:', token)
       <li class="logo">
         <img src="../assets/Logo Toko/Logo.png" alt="Logo" />
       </li>
-      <li><router-link to="/admin">Home</router-link></li>
-      <li><router-link to="/search_admin">Search</router-link></li>
-      <li><router-link to="/About">About Us</router-link></li>
-      <li><router-link to="/Contact">Contact Us</router-link></li>
+      <li><router-link to="/admin">Dashboard</router-link></li>
+      <li><router-link to="/search_admin">Management Product</router-link></li>
       <li>
         <router-link to="/user">
           <div class="pp">
-            <img 
+            <img
               v-if="user && user.image_profile"
               :src="`/Profile Picture/${user.image_profile}`"
               :alt="user.username || 'Profile'"
