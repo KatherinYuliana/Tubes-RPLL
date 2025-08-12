@@ -16,12 +16,8 @@ console.log('Token:', token)
     })
     user.value = res.data
   } catch (err) {
-    // } catch (err) {
   console.error('axios error', err.response?.data || err.message)
   router.push('/')
-// }
-    // console.error(err)
-    // router.push('/')
   }
 })
 </script>
@@ -30,16 +26,16 @@ console.log('Token:', token)
   <nav>
     <ul>
       <li class="logo">
-        <img src="../../assets/Logo Toko/Logo.png" alt="Logo" />
+        <img src="../assets/Logo Toko/Logo.png" alt="Logo" />
       </li>
-      <li><router-link to="/home_admin">Home</router-link></li>
-      <li><router-link to="/search_admin">Search</router-link></li>
-      <li><router-link to="/about_admin">About Us</router-link></li>
-      <li><router-link to="/contact_admin">Contact Us</router-link></li>
+      <li><router-link to="/homeuser">Home</router-link></li>
+      <li><router-link to="/Search">Search</router-link></li>
+      <li><router-link to="/About">About Us</router-link></li>
+      <li><router-link to="/Contact">Contact Us</router-link></li>
       <li>
         <router-link to="/user">
           <div class="pp">
-            <img 
+            <img
               v-if="user && user.image_profile"
               :src="`/Profile Picture/${user.image_profile}`"
               :alt="user.username || 'Profile'"

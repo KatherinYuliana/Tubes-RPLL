@@ -2,12 +2,12 @@
   <nav>
     <ul>
       <li class="logo">
-        <img src="../../assets/Logo Toko/Logo.png" alt="Logo" />
+        <img src="../assets/Logo Toko/Logo.png" alt="Logo" />
       </li>
-      <li><router-link to="/home_guest">Home</router-link></li>
-      <li><router-link to="/search_guest">Search</router-link></li>
-      <li><router-link to="/about_guest">About Us</router-link></li>
-      <li><router-link to="/contact_guest">Contact Us</router-link></li>
+      <li><router-link to="/Home">Home</router-link></li>
+      <li><router-link to="/Search">Search</router-link></li>
+      <li><router-link to="/About">About Us</router-link></li>
+      <li><router-link to="/Contact">Contact Us</router-link></li>
       <li>
         <router-link to="/login">
           <button>Login</button>

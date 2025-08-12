@@ -1,5 +1,5 @@
 <script setup>
-import Navbar from "../../components/Member/NavbarMember.vue"
+import Navbar from "@/components/NavbarAdmin.vue"
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
@@ -64,8 +64,7 @@ function goToEdit(id_product) {
       <p>{{ product.description }}</p>
 
     </div>
-    <!-- <button @click="goToEdit(product.id_product)">Tambah Ke Keranjang</button> -->
-    <!-- <button @click="goToEdit(product.id_product)">Beli Sekarang</button> -->
+    <button @click="goToEdit(product.id_product)">Edit Produk</button>
   </div>
 </template>
 

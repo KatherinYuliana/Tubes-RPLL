@@ -1,5 +1,5 @@
 <script setup>
-import Navbar from "../../components/Admin/NavbarAdmin.vue"
+import Navbar from "@/components/NavbarAdmin.vue"
 </script>
 <template>
     <header>
@@ -187,7 +187,7 @@ export default {
 
         if (!res.ok) throw new Error('Gagal menyimpan perubahan');
         alert('Data produk berhasil diperbarui');
-        this.$router.push('/home_admin');
+        this.$router.push('/admin');
       } catch (err) {
         console.error(err);
         alert('Terjadi kesalahan saat menyimpan perubahan.');

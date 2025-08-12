@@ -45,9 +45,9 @@ const login = async () => {
 
     localStorage.setItem('token', res.data.token)
     if (email.value === 'admin@gmail.com') {
-      router.push('/home_admin')
+      router.push('/admin')
     } else {
-      router.push('/home_member')
+      router.push('/homeuser')
     }
   } catch (err) {
     error.value = err.response?.data?.message || 'Gagal login'
