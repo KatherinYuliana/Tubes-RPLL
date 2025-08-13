@@ -11,7 +11,6 @@
     <div v-if="user">
       <p><strong>Nama:</strong> {{ user.username }}</p>
       <p><strong>Email:</strong> {{ user.email }}</p>
-      <!-- <p><strong>Saldo:</strong> Rp {{ user.balance.toLocaleString() }}</p> -->
     </div>
     <div v-else>
       <p>Memuat data...</p>

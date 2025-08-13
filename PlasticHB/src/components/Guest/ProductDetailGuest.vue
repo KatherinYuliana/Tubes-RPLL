@@ -1,5 +1,5 @@
 <script setup>
-import Navbar from "@/components/NavbarAdmin.vue"
+import Navbar from "./NavbarGuest.vue"
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
@@ -38,9 +38,9 @@ onMounted(async () => {
   }
 });
 
-function goToEdit(id_product) {
-  router.push(`/form_edit/${id_product}`)
-}
+// function goToEdit(id_product) {
+//   router.push(`/form_edit/${id_product}`)
+// }
 </script>
 
 <template>
@@ -64,7 +64,7 @@ function goToEdit(id_product) {
       <p>{{ product.description }}</p>
 
     </div>
-    <button @click="goToEdit(product.id_product)">Edit Produk</button>
+    <!-- <button @click="goToEdit(product.id_product)">Edit Produk</button> -->
   </div>
 </template>
 

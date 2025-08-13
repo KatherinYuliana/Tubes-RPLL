@@ -2,8 +2,12 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const pool = require('../db');
+// const authMiddleware = require('./authMiddleware');
+const authMiddleware = require('./authMiddleware');
+
 const SECRET = 'rahasia123'; // Ganti dengan secret yang lebih aman
 
+// router.use(authMiddleware);
 // Login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -32,7 +36,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Get user profile
-router.get('/profile', async (req, res) => {
+router.get('/profile', authMiddleware, async (req, res) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -44,7 +48,7 @@ router.get('/profile', async (req, res) => {
   try {
     const decoded = jwt.verify(token, SECRET); // Pastikan SECRET sama seperti saat login
     const result = await pool.query(
-      'SELECT username, email, image_profile FROM users WHERE id_user = $1',
+      'SELECT username, email, image_profile, balance FROM users WHERE id_user = $1',
       [decoded.id_user]
     );
 

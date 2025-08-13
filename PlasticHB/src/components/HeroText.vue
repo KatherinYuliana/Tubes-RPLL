@@ -18,7 +18,7 @@ defineProps<{
             <router-link v-if="ctaText && ctaTo" :to="ctaTo" class="cta-button" > {{ ctaText }}</router-link>
         </div>
     </section>
-
+    
 </template>
 
 <style scoped>
@@ -60,7 +60,7 @@ defineProps<{
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-decoration: none;
-
+    
 }
 .cta-button:hover {
   background-color: #e1004e;
