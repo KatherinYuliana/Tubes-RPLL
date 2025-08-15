@@ -22,14 +22,6 @@ import ProductDetailMember from '../components/Member/ProductDetailMember.vue'
 import ProductDetailAdmin from '../components/Admin/ProductDetailAdmin.vue'
 import FormAdd from '../pages/Admin/FormAdd.vue'
 import FormEdit from '../pages/Admin/FormEdit.vue'
-// import { path } from '../../backend/app'
-// import { path } from '../../backend/app'
-// import CartMember from '../pages/Member/CartMember.vue'
-// import CheckoutView from '../pages/Member/CheckoutView.vue'
-// import CheckoutSuccess from '../pages/Member/CheckoutSuccess.vue'
-// import OrderHistory from '../pages/Member/OrderHistory.vue'
-// import ViewAllOrder from '../pages/Admin/ViewAllOrder.vue'
-// import AdminRevenue from '../pages/Admin/AdminRevenue.vue'
 
 const routes = [
   { path: '/', component: HomeGuest},
@@ -51,18 +43,11 @@ const routes = [
   { path: '/user_admin', component: UserAdmin }, // Assuming UserAdmin is the same as User
   { path: '/edit_profile', component: EditProfile },
   { path: '/edit_profile_admin', component: EditProfileAdmin },
-  // { path: '/homeuser', component: HomeUser },
   { path: '/products/detail/:id_product', name: 'ProductDetail', component: ProductDetail, props: true },
   { path: '/products/detail_member/:id_product', name: 'ProductDetailMember', component: ProductDetailMember, props: true },
   { path: '/products/detail_admin/:id_product', name: 'ProductDetailAdmin', component: ProductDetailAdmin, props: true },
   { path: '/form_add', component: FormAdd },
-  { path: '/form_edit/:id_product', name: 'EditProduct', component: FormEdit, props: true },
-  // { path: '/cart_member', component: CartMember },
-  // { path: '/checkout', component: CheckoutView },
-  // { path: '/checkout/success', component: CheckoutSuccess },
-  // { path: '/history_member', component: OrderHistory },
-  // { path: '/view_all_order', component: ViewAllOrder },
-  // { path: '/admin_revenue', component: AdminRevenue }
+  { path: '/form_edit/:id_product', name: 'EditProduct', component: FormEdit, props: true }
 ]
 
 export default createRouter({

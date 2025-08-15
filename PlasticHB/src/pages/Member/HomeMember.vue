@@ -2,7 +2,6 @@
 import Navbar from "../../components/Member/NavbarMember.vue"
 import HeroText from "../../components/HeroText.vue";
 import ProductGallery from "../../components/ProductGallery.vue";
-// import Gallery from "../../components/Member/GalleryMember.vue";
 import GalleryMember from "../../components/Member/GalleryMember.vue";
 function handleClick(){
   alert('Ayo Mulai Belanja!')

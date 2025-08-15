@@ -40,9 +40,6 @@ function goToDetail(id_product) {
   router.push(`/products/detail_member/${id_product}`)
 }
 
-// const navigateToProductDetail = (productId) => {
-//   router.push({ name: 'ProductDetail', params: { id: productId } });
-// };
 </script>
 
 <template>
@@ -72,9 +69,7 @@ function goToDetail(id_product) {
         </label>
       </div>
     </form>
-    
-    <!-- <button @click="$router.push('/form_add')" class="add-product-btn">Tambah Produk</button> -->
-    
+   
     <div v-if="error" class="error-message">
       {{ error }}
     </div>

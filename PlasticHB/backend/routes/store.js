@@ -1,4 +1,3 @@
-// routes/storeDescription.js
 const express = require('express')
 const router = express.Router()
 const db = require('../db')
@@ -30,8 +29,6 @@ router.put('/about_us/:id', async (req, res) => {
       WHERE id_store = $6 
       RETURNING *`,
       [description, address, phone_number, opening_hours, maps_url, id]
-      // 'UPDATE store_description SET information = $1, description = $2, maps_url = $3 WHERE id_store = $4 RETURNING *',
-      // [title, description, maps_url, id]
     )
     res.json(result.rows[0])
   } catch (err) {

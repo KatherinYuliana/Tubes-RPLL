@@ -79,7 +79,6 @@ function goToEdit(id_product) {
     <button @click="$router.back()">Go Back</button>
   </div>
 
-  <!-- <div v-if="product" class="detail"> -->
   <div v-if="product" class="detail">
     <img :src="`/Foto Produk/${product.image_url}`" alt="Product Image" />
     <div class="info">
@@ -89,7 +88,7 @@ function goToEdit(id_product) {
       <p>{{ product.description }}</p>
 
     </div>
-    <!-- <button @click="goToEdit(product.id_product)">Edit Produk</button> -->
+
     <div class="action-buttons">
       <button @click="goToEdit(product.id_product)">Edit Produk</button>
       <button 

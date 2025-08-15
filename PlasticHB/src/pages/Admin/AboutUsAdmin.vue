@@ -89,7 +89,6 @@ onMounted(() => {
       <div class="about-info-container">
         <div class="header-section">
           <h2>Tentang Kami</h2>
-          <!-- <input v-else v-model="storeData.title" class="edit-input" placeholder="Judul"> -->
           
           <button v-if="!isEditing" @click="isEditing = true" class="edit-button">
             Edit
@@ -109,10 +108,6 @@ onMounted(() => {
             Alamat: {{ storeData.address }} <br>
             Telepon: {{ storeData.phone_number }} <br>
             Jam Buka: {{ storeData.opening_hours }}
-<!--             
-            Alamat: Jl. Dipati Ukur No.80-84, Dago, Kecamatan Coblong, Kota Bandung, Jawa Barat 40132 <br><br>
-            Telepon: (022) 250-1234 <br><br>
-            Jam Buka: Senin - Sabtu, 08.00 - 17.00 WIB -->
           </p>
         </div>
         <div v-else>

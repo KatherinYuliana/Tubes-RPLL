@@ -1,6 +1,5 @@
 <script setup>
 import Navbar from "../../components/Admin/NavbarAdmin.vue"
-// import ContactForm from "../../components/ContactForm.vue";
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
@@ -57,7 +56,6 @@ onMounted(() => {
     </div>
 
     <div v-else>
-      <!-- <ContactForm @message-sent="fetchMessages" /> -->
 
       <div class="message-list">
         <div v-if="messages.length === 0" class="empty-message">

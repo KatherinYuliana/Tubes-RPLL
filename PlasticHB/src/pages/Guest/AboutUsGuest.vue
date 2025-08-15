@@ -1,111 +1,3 @@
-<!-- <script setup>
-import Navbar from "../../components/Guest/NavbarGuest.vue"
-
-const frontendDev = {
-  role: "Frontend Developer",
-  name: "Peter Jaya Sentosa",
-  bio: "Pengembang antarmuka aplikasi.",
-  email: "peterjaya@gmail.com"
-};
-
-const backendDev = {
-  role: "Backend Developer",
-  name: "Katherin Yuliana",
-  bio: "Pengembang backend aplikasi.",
-  email: "katherinyuliana@gmail.com"
-};
-</script>
-
-<template>
-  <div>
-    <header>
-      <Navbar />
-    </header>
-    <main>
-      <p>Selamat datang di halaman About. Di sini Anda dapat mengetahui lebih banyak tentang aplikasi ini dan tim pengembang.</p>
-      <div class="about-info-container">
-        <h2>Tentang Aplikasi</h2>
-        <p>
-          PlasticHB adalah aplikasi yang membantu pengelolaan data plastik dan lingkungan.
-        </p>
-        <div class="map-section">
-          <h3>Peta Lokasi</h3>
-          <div class="map-placeholder">
-            <img src="../../assets/Map.png" alt="">
-            <span>Peta akan ditampilkan di sini.</span>
-          </div>
-        </div>
-        <div class="dev-section">
-          <h3>Biodata Programmer</h3>
-          <div class="dev-card frontend">
-            <h4>{{ frontendDev.role }}</h4>
-            <p><strong>Nama:</strong> {{ frontendDev.name }}</p>
-            <p><strong>Bio:</strong> {{ frontendDev.bio }}</p>
-            <p><strong>Email:</strong> {{ frontendDev.email }}</p>
-          </div>
-          <div class="dev-card backend">
-            <h4>{{ backendDev.role }}</h4>
-            <p><strong>Nama:</strong> {{ backendDev.name }}</p>
-            <p><strong>Bio:</strong> {{ backendDev.bio }}</p>
-            <p><strong>Email:</strong> {{ backendDev.email }}</p>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-</template>
-
-<style scoped>
-.about-info-container {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 24px;
-  background: #fafafa;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-.map-section {
-  margin: 24px 0;
-}
-
-.map-placeholder {
-  border: 2px dashed #2196f3;
-  border-radius: 8px;
-  padding: 32px;
-  text-align: center;
-  background: #e3f2fd;
-  margin-top: 8px;
-}
-.map-placeholder img {
-  width: 100%;
-  max-width: 400px;
-  border: 2px dashed #2196f3;
-  border-radius: 8px;
-  display: block;
-  margin: 0 auto 8px auto;
-}
-.dev-section {
-  margin-top: 32px;
-}
-
-.dev-card {
-  border: 2px solid #bdbdbd;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
-  background: #fff;
-}
-
-.dev-card.frontend {
-  border-color: #4caf50;
-}
-
-.dev-card.backend {
-  border-color: #f44336;
-}
-</style> -->
-
 <script setup>
 import Navbar from "../../components/Guest/NavbarGuest.vue"
 import { ref, onMounted } from 'vue'
@@ -129,7 +21,6 @@ const fetchStoreData = async () => {
     isLoading.value = true
     const response = await axios.get('http://localhost:3000/api/store/about_us')
     const data = response.data
-    // console.log('API Response:', response.data)
     
     if (response.data && response.data.length > 0) {
       storeData.value = {
@@ -166,20 +57,6 @@ const fetchStoreData = async () => {
   }
 }
 
-// Save data ke database
-// const saveStoreData = async () => {
-//   try {
-//     await axios.put(`http://localhost:3000/api/store/about_us/${storeData.value.id_store}`, {
-//       title: storeData.value.title,
-//       description: storeData.value.description,
-//       maps_url: storeData.value.maps_url
-//     })
-//     isEditing.value = false
-//     fetchStoreData() // Refresh data
-//   } catch (error) {
-//     console.error('Error saving store data:', error)
-//   }
-// }
 
 onMounted(() => {
   fetchStoreData()
@@ -195,16 +72,6 @@ onMounted(() => {
       <div class="about-info-container">
         <div class="header-section">
           <h2>Tentang Kami</h2>
-          <!-- <h2>{{ storeData.title || 'Tentang Kami' }}</h2> -->
-          <!-- <input v-model="storeData.title" class="edit-input" placeholder="Judul"> -->
-          
-          <!-- <button v-if="!isEditing" @click="isEditing = true" class="edit-button"> -->
-            <!-- Edit -->
-          <!-- </button> -->
-          <!-- <div v-else class="edit-actions">
-            <button @click="saveStoreData" class="save-button">Simpan</button>
-            <button @click="isEditing = false; fetchStoreData()" class="cancel-button">Batal</button>
-          </div> -->
         </div>
 
         <div>
@@ -216,17 +83,8 @@ onMounted(() => {
             Alamat: {{ storeData.address }} <br>
             Telepon: {{ storeData.phone_number }} <br>
             Jam Buka: {{ storeData.opening_hours }}
-
-            <!-- {{ storeData.address }} -->
-            <!-- Nama Toko: Plastic HB <br><br>
-            Alamat: Jl. Dipati Ukur No.80-84, Dago, Kecamatan Coblong, Kota Bandung, Jawa Barat 40132 <br><br>
-            Telepon: (022) 250-1234 <br><br>
-            Jam Buka: Senin - Sabtu, 08.00 - 17.00 WIB -->
           </p>
         </div>
-        <!-- <div v-else>
-          <textarea v-model="storeData.description" class="edit-textarea" placeholder="Deskripsi toko"></textarea>
-        </div> -->
 
         <div class="map-section">
           <h3>Peta Lokasi</h3>
@@ -235,7 +93,6 @@ onMounted(() => {
     <div v-html="storeData.maps_url"></div>
   </div>
           </div>
-          <!-- <textarea v-else v-model="storeData.maps_url" class="edit-textarea" placeholder="Kode embed Google Maps"></textarea> -->
         </div>
       </div>
     </main>

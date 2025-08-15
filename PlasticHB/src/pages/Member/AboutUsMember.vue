@@ -21,7 +21,6 @@ const fetchStoreData = async () => {
     isLoading.value = true
     const response = await axios.get('http://localhost:3000/api/store/about_us')
     const data = response.data
-    // console.log('API Response:', response.data)
     
     if (response.data && response.data.length > 0) {
       storeData.value = {
@@ -58,21 +57,6 @@ const fetchStoreData = async () => {
   }
 }
 
-// Save data ke database
-// const saveStoreData = async () => {
-//   try {
-//     await axios.put(`http://localhost:3000/api/store/about_us/${storeData.value.id_store}`, {
-//       title: storeData.value.title,
-//       description: storeData.value.description,
-//       maps_url: storeData.value.maps_url
-//     })
-//     isEditing.value = false
-//     fetchStoreData() // Refresh data
-//   } catch (error) {
-//     console.error('Error saving store data:', error)
-//   }
-// }
-
 onMounted(() => {
   fetchStoreData()
 })
@@ -87,16 +71,6 @@ onMounted(() => {
       <div class="about-info-container">
         <div class="header-section">
           <h2>Tentang Kami</h2>
-          <!-- <h2>{{ storeData.title || 'Tentang Kami' }}</h2> -->
-          <!-- <input v-model="storeData.title" class="edit-input" placeholder="Judul"> -->
-          
-          <!-- <button v-if="!isEditing" @click="isEditing = true" class="edit-button"> -->
-            <!-- Edit -->
-          <!-- </button> -->
-          <!-- <div v-else class="edit-actions">
-            <button @click="saveStoreData" class="save-button">Simpan</button>
-            <button @click="isEditing = false; fetchStoreData()" class="cancel-button">Batal</button>
-          </div> -->
         </div>
 
         <div>
@@ -108,17 +82,8 @@ onMounted(() => {
             Alamat: {{ storeData.address }} <br>
             Telepon: {{ storeData.phone_number }} <br>
             Jam Buka: {{ storeData.opening_hours }}
-
-            <!-- {{ storeData.address }} -->
-            <!-- Nama Toko: Plastic HB <br><br>
-            Alamat: Jl. Dipati Ukur No.80-84, Dago, Kecamatan Coblong, Kota Bandung, Jawa Barat 40132 <br><br>
-            Telepon: (022) 250-1234 <br><br>
-            Jam Buka: Senin - Sabtu, 08.00 - 17.00 WIB -->
           </p>
         </div>
-        <!-- <div v-else>
-          <textarea v-model="storeData.description" class="edit-textarea" placeholder="Deskripsi toko"></textarea>
-        </div> -->
 
         <div class="map-section">
           <h3>Peta Lokasi</h3>
@@ -127,7 +92,7 @@ onMounted(() => {
     <div v-html="storeData.maps_url"></div>
   </div>
           </div>
-          <!-- <textarea v-else v-model="storeData.maps_url" class="edit-textarea" placeholder="Kode embed Google Maps"></textarea> -->
+          
         </div>
       </div>
     </main>

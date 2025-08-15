@@ -10,7 +10,6 @@ const product = ref(null)
 const error = ref(null)
 const isLoading = ref(false)
 
-
 onMounted(async () => {
   const id_product = route.params.id_product || route.params.id // fallback for older routes
   if (!id_product) {
@@ -38,9 +37,6 @@ onMounted(async () => {
   }
 });
 
-// function goToEdit(id_product) {
-//   router.push(`/form_edit/${id_product}`)
-// }
 </script>
 
 <template>
@@ -54,7 +50,6 @@ onMounted(async () => {
     <button @click="$router.back()">Go Back</button>
   </div>
 
-  <!-- <div v-if="product" class="detail"> -->
   <div v-if="product" class="detail">
     <img :src="`/Foto Produk/${product.image_url}`" alt="Product Image" />
     <div class="info">
@@ -64,7 +59,6 @@ onMounted(async () => {
       <p>{{ product.description }}</p>
 
     </div>
-    <!-- <button @click="goToEdit(product.id_product)">Edit Produk</button> -->
   </div>
 </template>
 

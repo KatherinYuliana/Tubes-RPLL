@@ -7,9 +7,6 @@ import ContactForm from "../../components/ContactForm.vue";
   <header>
     <Navbar />
   </header>
-  <!-- <router-link to="/login">
-          <button>Login</button>
-        </router-link> -->
   <h1 >Ada Keluhan? Hubungi Kami!</h1>
   <ContactForm />
 </template>

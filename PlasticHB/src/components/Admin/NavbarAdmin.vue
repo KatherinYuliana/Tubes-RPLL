@@ -16,12 +16,8 @@ console.log('Token:', token)
     })
     user.value = res.data
   } catch (err) {
-    // } catch (err) {
-  console.error('axios error', err.response?.data || err.message)
-  router.push('/')
-// }
-    // console.error(err)
-    // router.push('/')
+    console.error('axios error', err.response?.data || err.message)
+    router.push('/')
   }
 })
 </script>

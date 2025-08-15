@@ -26,40 +26,7 @@ router.post('/add', async (req, res) => {
   res.json({ message: 'Product added' });
 });
 
-// GET products (menampilkan detail produk)
-// router.get('/detail', async (req, res) => {
-//   try {
-//     const { id_product } = req.query
-
-//     if (!id_product) {
-//       return res.status(400).json({
-//         error: 'id_product parameter is required'
-//       })
-//     }
-
-//     const result = await pool.query(
-//       `SELECT p.*, c.name_category
-// FROM products p
-// LEFT JOIN categories c
-// ON p.id_category = c.id_category WHERE p.id_product = 1`,
-//       [id_product]
-//     )
-
-//     if (result.rows.length === 0) {
-//       return res.status(404).json({
-//         error: 'Product not found'
-//       })
-//     }
-
-//     res.json(result.rows)
-//   } catch (err) {
-//     console.error(err)
-//     res.status(500).json({
-//       error: 'Server error'
-//     })
-//   }
-// })
-// In your products.js backend route
+// GET detail products
 router.get('/detail', async (req, res) => {
   const { id_product } = req.query;
 
@@ -182,8 +149,8 @@ router.post('/search', async (req, res) => {
 });
 
 const fs = require('fs');
-// const path = require('path');
 
+// DELETE product and associated image
 router.delete('/:id_product', async (req, res) => {
   const { id_product } = req.params;
 
@@ -233,11 +200,5 @@ router.delete('/:id_product', async (req, res) => {
     });
   }
 });
-// DELETE product
-// router.delete('/:id', async (req, res) => {
-//   const { id } = req.params;
-//   await pool.query('DELETE FROM products WHERE id = $1', [id]);
-//   res.json({ message: 'Product deleted' });
-// });
 
 module.exports = router;

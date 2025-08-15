@@ -4,12 +4,10 @@ const path = require('path');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const pool = require('../db');
-// const authMiddleware = require('./authMiddleware');
 const authMiddleware = require('./authMiddleware');
 
 const SECRET = 'rahasia123'; // Ganti dengan secret yang lebih aman
 
-// router.use(authMiddleware);
 // Login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -121,8 +119,6 @@ router.put('/update_profile', authMiddleware, upload.single('image_profile'), as
         res.status(500).json({ message: 'Terjadi kesalahan pada server' });
     }
 });
-
-
 
 // POST user
 router.post('/register', async (req, res) => {
