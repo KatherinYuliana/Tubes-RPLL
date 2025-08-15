@@ -1,4 +1,6 @@
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const pool = require('../db');
@@ -48,7 +50,7 @@ router.get('/profile', authMiddleware, async (req, res) => {
   try {
     const decoded = jwt.verify(token, SECRET); // Pastikan SECRET sama seperti saat login
     const result = await pool.query(
-      'SELECT username, email, image_profile, balance FROM users WHERE id_user = $1',
+      'SELECT username, email, image_profile FROM users WHERE id_user = $1',
       [decoded.id_user]
     );
 
@@ -62,6 +64,64 @@ router.get('/profile', authMiddleware, async (req, res) => {
     res.status(403).json({ message: 'Token tidak valid' });
   }
 });
+
+// upload gambar ke folder tertentu
+const uploadDir = path.join(__dirname, '../../public/Profile Picture'); // ganti sesuai folder kamu
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, uploadDir),
+  filename: (req, file, cb) => cb(null, file.originalname) // Simpan nama asli
+});
+
+const upload = multer({ storage });
+
+router.post('/upload', upload.single('image_url'), (req, res) => {
+  if (!req.file) return res.status(400).send('No file uploaded.');
+  res.send({ filename: req.file.originalname });
+});
+
+// --- Update User Profile ---
+router.put('/update_profile', authMiddleware, upload.single('image_profile'), async (req, res) => {
+    const userId = req.userId;
+    const { username, email } = req.body;
+
+    if (!username || !email) {
+        return res.status(400).json({ message: 'Username dan email tidak boleh kosong' });
+    }
+
+    try {
+        // Ambil data user saat ini untuk mendapatkan nama file gambar lama
+        const currentUser = await pool.query('SELECT image_profile FROM users WHERE id_user = $1', [userId]);
+
+        if (currentUser.rows.length === 0) {
+            return res.status(404).json({ message: 'Pengguna tidak ditemukan.' });
+        }
+        // 3. Tentukan nama file gambar baru
+        // Jika ada file baru yang diunggah, gunakan nama file baru.
+        // Jika tidak, gunakan nama file lama dari database.
+        let newImageProfile = currentUser.rows[0].image_profile;
+        if (req.file) {
+            newImageProfile = req.file.filename;
+            // Di sini Anda bisa menambahkan logika untuk menghapus file gambar lama jika perlu
+        }
+
+        // 4. Update semua data termasuk nama file gambar baru
+        const result = await pool.query(
+            'UPDATE users SET username = $1, email = $2, image_profile = $3 WHERE id_user = $4 RETURNING id_user, username, email, image_profile',
+            [username, email, newImageProfile, userId]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: 'Pengguna tidak ditemukan' });
+        }
+
+        res.json({ message: 'Profil berhasil diperbarui', user: result.rows[0] });
+
+    } catch (err) {
+        console.error("Error saat memperbarui profil:", err);
+        res.status(500).json({ message: 'Terjadi kesalahan pada server' });
+    }
+});
+
 
 
 // POST user

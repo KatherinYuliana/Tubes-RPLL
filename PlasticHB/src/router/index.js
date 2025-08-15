@@ -15,11 +15,15 @@ import AboutMember from '../pages/Member/AboutUsMember.vue'
 import AboutAdmin from '../pages/Admin/AboutUsAdmin.vue' // Assuming AboutAdmin is the same as AboutMember
 import User from '../pages/Member/User.vue'
 import UserAdmin from '../pages/Admin/UserAdmin.vue'
-import ProductDetail from '../components/Guest/ProductDetailGuest.vue' 
+import EditProfile from '../pages/Member/EditProfile.vue'
+import EditProfileAdmin from '../pages/Admin/EditProfileAdmin.vue' // Assuming EditProfileAdmin is similar to EditProfile
+import ProductDetail from '../components/Guest/ProductDetailGuest.vue'
 import ProductDetailMember from '../components/Member/ProductDetailMember.vue'
 import ProductDetailAdmin from '../components/Admin/ProductDetailAdmin.vue'
 import FormAdd from '../pages/Admin/FormAdd.vue'
 import FormEdit from '../pages/Admin/FormEdit.vue'
+// import { path } from '../../backend/app'
+// import { path } from '../../backend/app'
 // import CartMember from '../pages/Member/CartMember.vue'
 // import CheckoutView from '../pages/Member/CheckoutView.vue'
 // import CheckoutSuccess from '../pages/Member/CheckoutSuccess.vue'
@@ -45,11 +49,13 @@ const routes = [
   { path: '/about_admin', component: AboutAdmin }, // Assuming AboutAdmin is the same as AboutMember
   { path: '/user', component: User },
   { path: '/user_admin', component: UserAdmin }, // Assuming UserAdmin is the same as User
+  { path: '/edit_profile', component: EditProfile },
+  { path: '/edit_profile_admin', component: EditProfileAdmin },
   // { path: '/homeuser', component: HomeUser },
   { path: '/products/detail/:id_product', name: 'ProductDetail', component: ProductDetail, props: true },
   { path: '/products/detail_member/:id_product', name: 'ProductDetailMember', component: ProductDetailMember, props: true },
   { path: '/products/detail_admin/:id_product', name: 'ProductDetailAdmin', component: ProductDetailAdmin, props: true },
-  { path: '/form_add', component: FormAdd },  
+  { path: '/form_add', component: FormAdd },
   { path: '/form_edit/:id_product', name: 'EditProduct', component: FormEdit, props: true },
   // { path: '/cart_member', component: CartMember },
   // { path: '/checkout', component: CheckoutView },

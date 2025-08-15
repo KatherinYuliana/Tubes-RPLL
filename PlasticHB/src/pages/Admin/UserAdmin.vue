@@ -1,4 +1,7 @@
 <template>
+  <header>
+    <Navbar />
+  </header>
   <div class="p-4">
     <h2>Profil Pengguna</h2>
     <img
@@ -19,13 +22,14 @@
       <button>Logout</button>
     </router-link>
 
-    <router-link to="/">
+    <router-link to="/edit_profile">
       <button>Edit Profile</button>
     </router-link>
   </div>
 </template>
 
 <script setup>
+import Navbar from '../../components/Admin/NavbarAdmin.vue'
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'

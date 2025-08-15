@@ -1,6 +1,6 @@
 <script setup>
 import Navbar from "../../components/Admin/NavbarAdmin.vue"
-import ContactForm from "../../components/ContactForm.vue";
+// import ContactForm from "../../components/ContactForm.vue";
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
@@ -24,7 +24,7 @@ const deleteMessage = async (id_contact) => {
   if (!confirm('Are you sure you want to delete this message?')) {
     return
   }
-  
+
   try {
     await axios.delete(`http://localhost:3000/api/contact/${id_contact}`)
     messages.value = messages.value.filter(msg => msg.id_contact !== id_contact)
@@ -43,27 +43,27 @@ onMounted(() => {
   <header>
     <Navbar />
   </header>
-  
+
   <main class="container">
     <h1>Message List</h1>
-    
+
     <div v-if="isLoading" class="loading">
       Loading messages...
     </div>
-    
+
     <div v-else-if="error" class="error">
       Error: {{ error }}
       <button @click="fetchMessages">Try Again</button>
     </div>
-    
+
     <div v-else>
       <!-- <ContactForm @message-sent="fetchMessages" /> -->
-      
+
       <div class="message-list">
         <div v-if="messages.length === 0" class="empty-message">
           No messages found
         </div>
-        
+
         <table v-else class="messages-table">
           <thead>
             <tr>
@@ -132,7 +132,7 @@ onMounted(() => {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.messages-table th, 
+.messages-table th,
 .messages-table td {
   padding: 12px 15px;
   text-align: left;
@@ -173,7 +173,7 @@ onMounted(() => {
     display: block;
     overflow-x: auto;
   }
-  
+
   .delete-btn {
     padding: 4px 8px;
     font-size: 0.8rem;

@@ -20,11 +20,17 @@
       <button>Logout</button>
     </router-link>
 
-    <router-link to="/">
+    <router-link to="/edit_profile">
       <button>Edit Profile</button>
     </router-link>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'UserProfile'
+}
+</script>
 
 <script setup>
 import { onMounted, ref } from 'vue'

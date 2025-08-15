@@ -38,9 +38,9 @@ router.post('/add', async (req, res) => {
 //     }
 
 //     const result = await pool.query(
-//       `SELECT p.*, c.name_category 
-// FROM products p 
-// LEFT JOIN categories c 
+//       `SELECT p.*, c.name_category
+// FROM products p
+// LEFT JOIN categories c
 // ON p.id_category = c.id_category WHERE p.id_product = 1`,
 //       [id_product]
 //     )
@@ -62,33 +62,33 @@ router.post('/add', async (req, res) => {
 // In your products.js backend route
 router.get('/detail', async (req, res) => {
   const { id_product } = req.query;
-  
+
   if (!id_product) {
     return res.status(400).json({ error: 'Product ID is required' });
   }
 
   try {
     console.log('Fetching product with ID:', id_product);
-    
+
     const query = `
-      SELECT p.*, c.name_category 
-      FROM products p 
-      LEFT JOIN categories c ON p.id_category = c.id_category 
+      SELECT p.*, c.name_category
+      FROM products p
+      LEFT JOIN categories c ON p.id_category = c.id_category
       WHERE p.id_product = $1
     `;
-    
+
     const result = await pool.query(query, [id_product]);
-    
+
     console.log('Query result:', result.rows);
-    
+
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'Product not found' });
     }
-    
+
     res.json(result.rows);
   } catch (err) {
     console.error('Database error:', err);
-    res.status(500).json({ 
+    res.status(500).json({
       error: 'Internal server error',
       details: err.message // Include error details
     });
@@ -99,7 +99,7 @@ router.get('/detail', async (req, res) => {
 router.get('/random', async (req, res) => {
   try {
     const result = await pool.query(
-      'SELECT id_product, name_product, image_url FROM products ORDER BY RANDOM() LIMIT 5' // 5 random items
+      'SELECT id_product, name_product, image_url FROM products ORDER BY RANDOM() LIMIT 10' // 5 random items
     )
     res.json(result.rows)
   } catch (err) {
@@ -138,43 +138,43 @@ router.put('/edit', async (req, res) => {
 router.post('/search', async (req, res) => {
   try {
     const { query, type } = req.body;
-    
+
     let sql;
     let params;
-    
+
     if (type === 'name') {
       sql = `
-        SELECT 
+        SELECT
           p.id_product,
-          p.name_product, 
+          p.name_product,
           p.image_url
-        FROM 
+        FROM
           products p
-        WHERE 
+        WHERE
           p.name_product ILIKE '%' || $1 || '%';
       `;
       params = [`%${query}%`];
     } else if (type === 'category') {
       sql = `
-        SELECT 
+        SELECT
           p.id_product,
-          p.name_product, 
+          p.name_product,
           p.image_url
-        FROM 
+        FROM
           products p
-        JOIN 
+        JOIN
           categories c ON p.id_category = c.id_category
-        WHERE 
+        WHERE
           c.name_category ILIKE '%' || $1 || '%';
       `;
       params = [`%${query}%`];
     } else {
       return res.status(400).json({ error: 'Invalid search type' });
     }
-    
+
     const result = await pool.query(sql, params);
     res.json(result.rows);
-    
+
   } catch (error) {
     console.error('Search error:', error);
     res.status(500).json({ error: 'Internal server error' });
@@ -213,7 +213,7 @@ router.delete('/:id_product', async (req, res) => {
     // 3. Hapus file gambar jika ada
     if (imageUrl) {
       const imagePath = path.join(__dirname, '../../public/Foto Produk', imageUrl);
-      
+
       if (fs.existsSync(imagePath)) {
         fs.unlinkSync(imagePath);
         console.log(`Deleted image file: ${imagePath}`);
@@ -222,12 +222,12 @@ router.delete('/:id_product', async (req, res) => {
       }
     }
 
-    res.json({ 
-      message: 'Product and associated image deleted successfully' 
+    res.json({
+      message: 'Product and associated image deleted successfully'
     });
   } catch (err) {
     console.error('Delete error:', err);
-    res.status(500).json({ 
+    res.status(500).json({
       error: 'Internal server error',
       details: err.message
     });
